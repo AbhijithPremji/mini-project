@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>cat</h2>
+    <div class="card-body">
+                    <h4 class="card-title">Category Table</h4>
+                    <p class="card-description"> Add class <code>.table-striped</code>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> Category Name </th>
+                            <th> Description</th>
+                            <th> Image </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in pro %}
+                          <tr>
+                            
+                             <td> {{i.name}} </td>
+                            <td> {{ i.desc }}</td>
+                            <td>
+                              <img src="{{i.image.url}}" alt="image"/>
+                            </td> 
+                            <td>
+                                <a href="{% url 'catedit' cid=i.id %}">
+                            <button type="submit" class="btn btn-primary mb-2">Edit</button>
+                            </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'catdel' cid=i.id %}">
+                            <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                            </a>
+                            </td>
+                          </tr>
+                         {% endfor %} 
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+</body>
+</html>
+{% endblock content %}

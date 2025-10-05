@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Edit Product</h4>
+                    <p class="card-description"> Basic form elements </p>
+                    <form class="forms-sample" method="POST" action="{% url 'proupdate' pid=pro.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                     <div class="form-group" data-select2-id="7">
+                      <label>Category Name </label>
+                     
+                      <select class="js-example-basic-single select2-hidden-accessible" style="width:100%" data-select2-id="1" tabindex="-1" aria-hidden="true" name="cname">
+                        <option  data-select2-id="3">{{pro.Catname}}</option>
+                        {% for i in cat %}
+                        <option data-select2-id="3">{{i.name}}</option>
+                        {% endfor %}
+                      </select>
+                     
+                       
+                    </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Product Name</label>
+                        <input type="text" class="form-control" value="{{ pro.Pname }}" id="exampleInputName1" placeholder="Name" name="pname">
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label>
+                         <img src="{{ pro.Pimage1.url }}" alt="img" width="80px" heigth="80px"/>
+                        <input type="file" name="pimg1">
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label>
+                         <img src="{{ pro.Pimage2.url }}" alt="img" width="80px" heigth="80px"/>
+                        <input type="file" name="pimg2">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Price</label>
+                        <input type="number" class="form-control" value="{{pro.Price}}" id="exampleInputName1" placeholder="Price" name="price">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="5" name="desc">{{pro.Desc}}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock content %}

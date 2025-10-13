@@ -91,10 +91,13 @@ def Proupdate(req,pid):
         except MultiValueDictKeyError:
             file2 = ProductDb.objects.get(id=cid).Pimage1
 
-        ProductDb.objects.filter(id=pid).update(Catname=a,Pname=e,Price=b,Desc=b,Pimage1=file1,Pimage2=file2)
+        ProductDb.objects.filter(id=pid).update(Catname=a,Pname=e,Price=b,Desc=c,Pimage1=file1,Pimage2=file2)
         return redirect(ProductDetails)
 
 def Prodel(req,pid):
     pro = ProductDb.objects.filter(id=pid)
     pro.delete()
     return redirect(ProductDetails)
+
+def Contact(req):
+    return render(req,'contacts.html')

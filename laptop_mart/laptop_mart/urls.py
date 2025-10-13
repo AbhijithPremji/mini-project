@@ -20,10 +20,12 @@ import Lap.urls
 from . import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import FrontLap.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('lap/',include(Lap.urls))
+    path('lap/',include(Lap.urls)),
+    path('store/',include(FrontLap.urls))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

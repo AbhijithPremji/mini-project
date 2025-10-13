@@ -15,7 +15,8 @@ urlpatterns = [
     path('savepro/',views.SaveProduct,name="savepro"),
     path('editpro/<int:pid>/',views.EditPro,name="editpro"),
     path('proupdate/<int:pid>/',views.Proupdate,name="proupdate"),
-    path('prodel/<int:pid>/',views.Prodel,name="prodel")
+    path('prodel/<int:pid>/',views.Prodel,name="prodel"),
+    path('contacts/',views.Contact,name="contact")
 
 ]
 

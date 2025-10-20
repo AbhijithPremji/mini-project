@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from Lap.models import CategoryDb,ProductDb
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login
+
 
 # Create your views here.
 
@@ -101,3 +104,27 @@ def Prodel(req,pid):
 
 def Contact(req):
     return render(req,'contacts.html')
+
+def Login(req):
+    return render(req,'login.html')
+
+def adminLogin(req):
+    if req.method == "POST":
+        usr = req.POST.get('usr')
+        pwd = req.POST.get('password')
+        if User.objects.filter(username__contains=usr).exists():
+            em = authenticate(username=usr, password = pwd)
+            if em is not None:
+                login(req,em)
+                req.session['username'] = usr
+                req.session['password'] = pwd
+                return redirect(home)
+            else:
+                return redirect(Login)        
+    else:
+        return redirect(Login)
+
+def adminLogout(req):
+    del req.session['username']
+    del req.session['password']
+    return redirect(Login)

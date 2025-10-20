@@ -16,7 +16,10 @@ urlpatterns = [
     path('editpro/<int:pid>/',views.EditPro,name="editpro"),
     path('proupdate/<int:pid>/',views.Proupdate,name="proupdate"),
     path('prodel/<int:pid>/',views.Prodel,name="prodel"),
-    path('contacts/',views.Contact,name="contact")
+    path('contacts/',views.Contact,name="contact"),
+    path('adminlogin/',views.Login,name="adminlogin"),
+    path('admin-login/',views.adminLogin,name="adminLogin"),
+    path('admin-logout/',views.adminLogout,name="adminLogout")
 
 ]
 

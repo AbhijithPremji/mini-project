@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
@@ -377,16 +377,16 @@
             
             <div class="row">
                 {% for i in pro %}
-                <div class="col-lg-3 col-md-6 col-12 ">
+                <div class="col-lg-3 col-md-6 col-12 mb-4">
                     <!-- Start Single Product -->
-                    <div class="single-product h-100 my-auto py-auto">
-                        <div class="product-image">
+                    <div class="single-product h-100 my-auto">
+                        <div class="product-image my-auto py-auto">
                             <img src="{{i.Pimage1.url}}" alt="img">
                             <div class="button">
                                 <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>
-                        <div class="product-info">
+                        <div class="product-info py-auto my-auto">
                             <span class="category">{{i.Catname}}</span>
                             <h4 class="title">
                                 <a href="product-grids.html">{{i.Pname}}</a>
@@ -642,11 +642,14 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
     <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script type="{% static 'text/javascript' %}">
+        
         //========= Hero Slider 
         tns({
             container: '.hero-slider',

@@ -1,0 +1,178 @@
+{% extends "home.html" %}
+
+{% block contents %}
+
+ <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="/store/home"  aria-label="Toggle navigation">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="" href="{% url 'about' %}">About Us</a>
+                                        
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed active" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Products</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-3">
+                                            <li class="nav-item"><a href="product-grids.html">Cameras</a></li>
+                                            <li class="nav-item"><a href="product-list.html">Accessories</a></li>
+                                            <li class="nav-item"><a href="product-details.html">Lenses</a></li>
+                                            <li class="nav-item"><a href="cart.html">Sport Optics</a></li>
+                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Services</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+                                            </li>
+                                            <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
+                                            <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
+                                                    Sibebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" aria-label="Toggle navigation">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Nav Social -->
+                    <div class="nav-social">
+                        <h5 class="title">Follow Us:</h5>
+                        <ul>
+                            <li>
+                                <a href=""><i class="lni lni-facebook-filled"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-twitter-original"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-skype"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Nav Social -->
+                </div>
+            </div>
+        </div>
+    <!-- Shopping Cart -->
+
+
+<form id="contact-us" class="contact-us section">
+        <div class="container">
+            <div class="contact-head">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>Contact Us</h2>
+                            <p>There are many variations of passages of Lorem
+                                Ipsum available, but the majority have suffered alteration in some form.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info light">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-12">
+                            <div class="single-info-head">
+                                <!-- Start Single Info -->
+                                <div class="single-info">
+                                    <i class="lni lni-map"></i>
+                                    <h3>Address</h3>
+                                    <ul>
+                                        <li>44 Shirley Ave. West Chicago,<br> IL 60185, USA.</li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Info -->
+                                <!-- Start Single Info -->
+                                <div class="single-info">
+                                    <i class="lni lni-phone"></i>
+                                    <h3>Call us on</h3>
+                                    <ul>
+                                        <li>+1 800 555 44 00 (Toll free)</a></li>
+                                        <li>+321 55 666 7890</a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Info -->
+                                <!-- Start Single Info -->
+                                <div class="single-info light">
+                                    <i class="lni lni-envelope"></i>
+                                    <h3>Mail at</h3>
+                                    <ul>
+                                        <li>support@shopgrids.com</a>
+                                        </li>
+                                        <li>career@shopgrids.com</a></li>
+                                    </ul>
+                                </div>
+                                <!-- End Single Info -->
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-12 col-12">
+                            <div class="contact-form-head">
+                                <div class="form-main">
+                                    <form class="form" method="post" action="assets/mail/mail.php">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <input name="name" type="text" placeholder="Your Name" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <input name="subject" type="text" placeholder="Your Subject" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <input name="email" type="email" placeholder="Your Email" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <input name="phone" type="text" placeholder="Your Phone" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group message">
+                                                    <textarea name="message" placeholder="Your Message"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group button">
+                                                    <button type="submit" class="btn ">Submit Message</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock contents %}
+
+

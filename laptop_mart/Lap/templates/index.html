@@ -42,7 +42,9 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                  {% if request.session.username %}
+                  <h5 class="mb-0 font-weight-normal">{{request.session.username}}</h5>
+                  
                   <span>Gold Member</span>
                 </div>
               </div>
@@ -344,9 +346,9 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">{{request.session.username }}</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                  </div>
+                  </div>{% endif %}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                   <h6 class="p-3 mb-0">Profile</h6>
@@ -369,7 +371,12 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
+                      <form action="{% url 'adminLogout' %}" method="POST" enctype="multipart/form-data"> 
+                        {% csrf_token %}
+                     <button type="submit" class="btn dark">
                       <p class="preview-subject mb-1">Log out</p>
+                     </button> 
+                   </form>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>

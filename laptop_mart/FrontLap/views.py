@@ -20,3 +20,6 @@ def cart(req):
 
 def grid(req):
     return render(req,'proGrid.html')
+
+def Contactuser(req):
+    return render(req,'contactuser.html')

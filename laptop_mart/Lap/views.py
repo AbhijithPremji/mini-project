@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from FrontLap.models import ContactDB
 
 
 # Create your views here.
@@ -103,7 +104,8 @@ def Prodel(req,pid):
     return redirect(ProductDetails)
 
 def Contact(req):
-    return render(req,'contacts.html')
+    data = CategoryDb.objects.all()
+    return render(req,'contacts.html',{'data':data})
 
 def Login(req):
     return render(req,'login.html')

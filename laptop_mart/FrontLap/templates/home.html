@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
 
 </head>
 
@@ -226,16 +226,7 @@
                                         
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Products</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.html">Cameras</a></li>
-                                            <li class="nav-item"><a href="product-list.html">Accessories</a></li>
-                                            <li class="nav-item"><a href="product-details.html">Lenses</a></li>
-                                            <li class="nav-item"><a href="cart.html">Sport Optics</a></li>
-                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>
-                                        </ul>
+                                        <a href="{% url 'grid' %}">Products</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -250,7 +241,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
+                                        <a href="{% url 'contactuser' %}" aria-label="Toggle navigation">Contact Us</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
@@ -642,7 +633,7 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
@@ -689,6 +680,65 @@
             }
         });
     </script>
+    <style>
+  .product-sidebar .single-widget {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+    padding: 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    border-radius: 4px;
+}
+.product-sidebar .single-widget h3 {
+    position: relative;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    color: rgb(35, 35, 35);
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid rgb(229, 229, 229);
+}
+.product-sidebar .single-widget.search form input {
+    height: 50px;
+    width: 100%;
+    color: rgb(8, 24, 40);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    border-radius: 6px;
+    padding: 0px 50px 0px 15px;
+}
+.product-sidebar .single-widget .list li {
+    margin-bottom: 12px;
+}
+.product-grids .product-grid-topbar {
+    background-color: rgb(255, 255, 255);
+    padding: 15px 15px 15px 20px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+}
+.product-grids .product-grid-topbar .product-sorting select.form-control:not([size]):not([multiple]) {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 400;
+    padding-right: 38px;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDE4NS4zNDQgMTg1LjM0NCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTg1LjM0NCAxODUuMzQ0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTkyLjY3MiwxNDQuMzczYy0yLjc1MiwwLTUuNDkzLTEuMDQ0LTcuNTkzLTMuMTM4TDMuMTQ1LDU5LjMwMWMtNC4xOTQtNC4xOTktNC4xOTQtMTAuOTkyLDAtMTUuMTggICAgYzQuMTk0LTQuMTk5LDEwLjk4Ny00LjE5OSwxNS4xOCwwbDc0LjM0Nyw3NC4zNDFsNzQuMzQ3LTc0LjM0MWM0LjE5NC00LjE5OSwxMC45ODctNC4xOTksMTUuMTgsMCAgICBjNC4xOTQsNC4xOTQsNC4xOTQsMTAuOTgxLDAsMTUuMThsLTgxLjkzOSw4MS45MzRDOTguMTY2LDE0My4zMjksOTUuNDE5LDE0NC4zNzMsOTIuNjcyLDE0NC4zNzN6IiBmaWxsPSIjNTA1MDUwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(238, 238, 238);
+    border-image: initial;
+    background-position: right 17px center;
+}
+
+    </style>
 </body>
 
 </html>

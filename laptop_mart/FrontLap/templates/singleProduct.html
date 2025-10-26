@@ -92,40 +92,63 @@
                         <div class="product-info">
                             <h2 class="title">{{pro.Pname}}</h2>
                             <p class="category"><i class="lni lni-tag"></i> {{pro.Catname}}
-                            <h3 class="price">${{pro.Price}}</h3>
+                            <h3 class="price" >₹{{pro.Price}}</h3>
                             <p class="info-text">{{pro.Desc}}</p>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Quantity</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                            <form method="POST" action="{% url 'SaveCart' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-12">
+            <div class="form-group quantity">
+                <label for="color">Quantity</label>
+                <select class="form-control" id="qty" name="qty">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-12" hidden>
+        <div class="form-group ">
+            <label for="color">price</label>
+            <input class="form-control" value="{{pro.Price}}" type="tel" min=0 name="price" id="price" readonly />
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-12">
+        <div class="form-group ">
+            <label for="color">Total(₹)</label>
+            <input class="form-control" type="tel" min=0 name="total" id="total" readonly />
+        </div>
+    </div>
+
+    <div hidden>
+        <input type="hidden" name="uname" value="{{request.session.UserName}}">
+        <input type="hidden" name="pname" value="{{pro.Pname}}">
+    </div>
+
+    <div class="bottom-content">
+        <div class="row align-items-end">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="button cart-button">
+                    <button class="btn" type="submit" style="width: 100%;">Add to Cart</button>
                 </div>
             </div>
+            
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="wish-button">
+                    <button class="btn" type="submit" formaction="{% url 'SaveWishlist' %}">
+                        <i class="lni lni-heart"></i> To Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
             <div class="product-details-info">
                 {% comment %} <div class="single-block">
                     <div class="row">
@@ -290,5 +313,44 @@
             </div>
         </div>
     </section>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+        
+        // 1. Get the three elements
+        const qtySelect = document.getElementById("qty");
+        const priceInput = document.getElementById("price");
+        const totalInput = document.getElementById("total");
 
+        // 2. Create a function to do the calculation
+        function calculateTotal() {
+            // Get the raw value from the price input (e.g., "$1,200.00")
+            let priceString = priceInput.value;
+            
+            // --- THIS IS THE FIX ---
+            // Clean the string: remove '$', ',', and any spaces
+            let cleanPriceString = priceString.replace(/[$,\s]/g, '');
+
+            // Get the quantity
+            let qtyString = qtySelect.value;
+            
+            // 3. Convert the *clean* strings to numbers
+            let price = parseInt(cleanPriceString);
+            let qty = parseInt(qtyString);
+
+            // 4. Calculate and set the total
+            let total = price * qty;
+            
+            // Check for NaN in case something went wrong
+            if (!isNaN(total)) {
+                totalInput.value = total;
+            }
+        }
+
+        // 5. Add an event listener to run the function when you change the quantity
+        qtySelect.addEventListener("change", calculateTotal);
+
+        // 6. Run the function once right now to set the initial total
+        calculateTotal();
+    });
+</script>
 {% endblock contents %}

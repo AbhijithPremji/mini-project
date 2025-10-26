@@ -2,7 +2,7 @@
 
 {% block contents %}
 
- <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg">
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -16,20 +16,12 @@
                                         <a href="/store/home"  aria-label="Toggle navigation">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="" href="{% url 'about' %}">About Us</a>
+                                        <a  href="{% url 'about' %}">About Us</a>
                                         
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dd-menu collapsed active" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">Products</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-3">
-                                            <li class="nav-item"><a href="product-grids.html">Cameras</a></li>
-                                            <li class="nav-item"><a href="product-list.html">Accessories</a></li>
-                                            <li class="nav-item"><a href="product-details.html">Lenses</a></li>
-                                            <li class="nav-item"><a href="cart.html">Sport Optics</a></li>
-                                            <li class="nav-item"><a href="checkout.html">Checkout</a></li>
-                                        </ul>
+                                        <a class="active" href="{% url 'grid' %}">Products</a>
+                                    </li>
                                     </li>
                                     <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
@@ -44,7 +36,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
+                                        <a href="{% url 'contactuser' %}" aria-label="Toggle navigation">Contact Us</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
@@ -75,6 +67,7 @@
                 </div>
             </div>
         </div>
+ </header>
     <!-- Shopping Cart -->
 
 
@@ -96,9 +89,7 @@
                         <div class="col-lg-2 col-md-2 col-12">
                             <p>Subtotal</p>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>Discount</p>
-                        </div>
+                        
                         <div class="col-lg-1 col-md-2 col-12">
                             <p>Remove</p>
                         </div>
@@ -106,114 +97,36 @@
                 </div>
                 <!-- End Cart List Title -->
                 <!-- Cart Single List list -->
+                 {% for i in data %}
                 <div class="cart-single-list">
                     <div class="row align-items-center">
-                        <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/01.jpg" alt="#"></a>
+                        <div class="col-lg-1 col-md-1 col-8">
+                            {% comment %} <a href="product-details.html"><img src="assets/images/cart/01.jpg" alt="#"></a> {% endcomment %}
                         </div>
-                        <div class="col-lg-4 col-md-3 col-12">
+                        <div class="col-lg-4 col-md-2 col-10">
                             <h5 class="product-name"><a href="product-details.html">
-                                    Canon EOS M50 Mirrorless Camera</a></h5>
-                            <p class="product-des">
+                                    {{i.Product}}</a></h5>
+                            {% comment %} <p class="product-des">
                                 <span><em>Type:</em> Mirrorless</span>
                                 <span><em>Color:</em> Black</span>
-                            </p>
+                            </p> {% endcomment %}
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-2 col-12">
+                            <p>{{i.Qty}}</p>
                         </div>
                         <div class="col-lg-2 col-md-2 col-12">
-                            <div class="count-input">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
+                            <p>( {{i.Qty}} x {{i.Price}} ) =  ₹{{i.Total}}</p>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>$910.00</p>
+                        <div class="col-lg-2 col-md-3 col-12">
+                            <a class="remove-item" href="{% url 'cartdel' pid=i.id %}"><i class="lni lni-close"></i></a>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>$29.00</p>
-                        </div>
-                        <div class="col-lg-1 col-md-2 col-12">
+                        {% comment %} <div class="col-lg-1 col-md-2 col-12">
                             <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
-                <!-- End Single List list -->
-                <!-- Cart Single List list -->
-                <div class="cart-single-list">
-                    <div class="row align-items-center">
-                        <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/02.jpg" alt="#"></a>
-                        </div>
-                        <div class="col-lg-4 col-md-3 col-12">
-                            <h5 class="product-name"><a href="product-details.html">
-                                    Apple iPhone X 256 GB Space Gray</a></h5>
-                            <p class="product-des">
-                                <span><em>Memory:</em> 256 GB</span>
-                                <span><em>Color:</em> Space Gray</span>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <div class="count-input">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>$1100.00</p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>—</p>
-                        </div>
-                        <div class="col-lg-1 col-md-2 col-12">
-                            <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single List list -->
-                <!-- Cart Single List list -->
-                <div class="cart-single-list">
-                    <div class="row align-items-center">
-                        <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/03.jpg" alt="#"></a>
-                        </div>
-                        <div class="col-lg-4 col-md-3 col-12">
-                            <h5 class="product-name"><a href="product-details.html">HP LaserJet Pro Laser Printer</a></h5>
-                            <p class="product-des">
-                                <span><em>Type:</em> Laser</span>
-                                <span><em>Color:</em> White</span>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <div class="count-input">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>$550.00</p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <p>—</p>
-                        </div>
-                        <div class="col-lg-1 col-md-2 col-12">
-                            <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
-                        </div>
-                    </div>
-                </div>
+               {% endfor %}
                 <!-- End Single List list -->
             </div>
             <div class="row">
@@ -221,22 +134,97 @@
                     <!-- Total Amount -->
                     <div class="total-amount">
                         <div class="row">
-                            <div class="col-lg-8 col-md-6 col-12">
+                            {% if add.Name %}
+                            <div class="col-lg-8 col-md-10 col-12">
                                 <div class="left">
-                                    
+                                    <div class="coupon">
+                                        <form action="#" target="_blank">
+                                            <div>
+                                            <div style="margin-bottom: 15px; " >
+                                                <h3 class="text-center pb-2">Shipping Address</h3>
+                                                    <label class="form-label" for="name">Name:</label><br>
+                                                    <input class="form-control" value="{{add.Name}}" type="text" id="name" name="custname" required readonly/>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                   <div class="input-group">
+                                                    <select class="form-select" id="country_code" name="code" style="max-width: 130px;">
+                                                        <option value="+91" selected>India (+91)</option>
+                                                        </select>
+                                                    <input type="tel" value="{{add.Phone}}" class="form-control p-2" id="phone" name="phone" placeholder="9876543210" required>
+                                                </div>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                    <label class="form-label" for="address" >Address:</label><br>
+                                                    <textarea class="form-control" id="address" name="address" rows="4" cols="30" required>{{add.Address}}</textarea>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                    <label class="form-label" for="pincode">Pincode:</label><br>
+                                                    <input value="{{add.Pin}}" class="form-control" type="tel" min=6 max=6 id="pincode" name="pincode" pattern="[0-9]{6}" title="Please enter a 6-digit pincode" required>
+                                                </div>
+
+                                                <div>
+                                                    <button class="btn btn-primary"  type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            {% else %}
+                             <div class="col-lg-8 col-md-10 col-12">
+                                <div class="left">
+                                    <div class="coupon">
+                                        <form method="POST" action="{% url 'UserAdd' %}"  enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div>
+                                            <div style="margin-bottom: 15px; " >
+                                                <h3 class="text-center pb-2">Shipping Address</h3>
+                                                    <label class="form-label" for="name">Name:</label><br>
+                                                    <input value="{{names.Username}}" class="form-control" type="text" id="name" name="custname" required readonly/>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                   <div class="input-group">
+                                                    <select class="form-select" id="country_code" name="code" style="max-width: 130px;">
+                                                        <option value="+91" selected>India (+91)</option>
+                                                        </select>
+                                                    <input type="tel" class="form-control p-2" id="phone" name="phone" placeholder="9876543210" required>
+                                                </div>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                    <label class="form-label" for="address" >Address:</label><br>
+                                                    <textarea class="form-control" id="address" name="address" rows="4" cols="30" required></textarea>
+                                                </div>
+
+                                                <div style="margin-bottom: 15px;">
+                                                    <label class="form-label" for="pincode">Pincode:</label><br>
+                                                    <input class="form-control" type="tel" min=6 max=6 id="pincode" name="pincode" pattern="[0-9]{6}" title="Please enter a 6-digit pincode" required>
+                                                </div>
+
+                                                <div>
+                                                    <button class="btn btn-primary"  type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="right">
                                     <ul>
-                                        <li>Cart Subtotal<span>$2560.00</span></li>
+                                        <li>Cart Subtotal<span>${{tot}}</span></li>
                                         <li>Shipping<span>Free</span></li>
-                                        <li>You Save<span>$29.00</span></li>
-                                        <li class="last">You Pay<span>$2531.00</span></li>
+                                        <li>GST 5%<span>₹{{gst}}</span></li>
+                                        <li class="last">You Pay<span>₹{{totall}}</span></li>
                                     </ul>
                                     <div class="button">
-                                        <a href="checkout.html" class="btn">Checkout</a>
-                                        <a href="product-grids.html" class="btn btn-alt">Continue shopping</a>
+                                        <a href="{% url 'PaymentPage' %}" class="btn">Checkout</a>
+                                        <a href="{% url 'home' %}" class="btn btn-alt">Continue shopping</a>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +235,6 @@
             </div>
         </div>
     </div>
-
     <!--/ End Shopping Cart -->
 
 {% endblock contents %}

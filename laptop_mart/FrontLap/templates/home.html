@@ -55,9 +55,9 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
                             <ul class="useful-links">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'about' %}">About Us</a></li>
+                                <li><a href="{% url 'contactuser' %}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -68,12 +68,15 @@
                                 Hello
                             </div>
                             <ul class="user-login">
+                                {% if request.session.UserName %}
                                 <li>
-                                    <a href="login.html">Sign In</a>
+                                    <a href="{% url 'LogoutUser' %}">{{request.session.UserName}} // Logout</a>
                                 </li>
+                                {% else %}
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="{% url 'userregist' %}">Register/Login</a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -88,7 +91,7 @@
                     <div class="col-lg-3 col-md-3 col-7">
                         <!-- Start Header Logo -->
                         <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logo/logo.svg" alt="Logo">
+                            <h3>CAMSTORE</h3>
                         </a>
                         <!-- End Header Logo -->
                     </div>
@@ -126,7 +129,7 @@
                                     <div class="shopping-item">
                                         <div class="dropdown-cart-header">
                                             <span>2 Items</span>
-                                            <a href="cart.html">View Cart</a>
+                                            <a href="{% url 'cart' %}">View Cart</a>
                                         </div>
                                         <ul class="shopping-list">
                                             <li>
@@ -206,7 +209,7 @@
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->
- {% block contents %}                        
+                        {% block contents %}                        
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -286,15 +289,15 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                style="background-image: url({{pro.2.Pimage1.url}}); background-size: 380px 250px; background-position: right center;">
+                                style="background-image: url({{prod.Pimage1.url}}); background-size: 380px 250px; background-position: right center;">
                                 <div class="content">
-                                    <h2><span>{{pro.2.Catname}}</span>
-                                        {{pro.2.Pname}}
+                                    <h2><span>{{prod.Catname}}</span>
+                                        {{prod.Pname}}
                                     </h2>
-                                    <p>{{pro.2.Desc|truncatechars:140}}</p>
-                                    <h3><span>Now Only</span> ${{pro.2.Price}}</h3>
+                                    <p>{{prod.Desc|truncatechars:140}}</p>
+                                    <h3><span>Now Only</span> ₹{{prod.Price}}</h3>
                                     <div class="button">
-                                        <a href="#" class="btn">Buy Now</a>
+                                        <a href="{% url 'singleproduct' pid=prod.id %}" class="btn">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -322,15 +325,17 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
+                            
                             <div class="hero-small-banner"
-                                style="background-image: url({{pro.3.Pimage1.url}}); background-size: 180px 130px; background-position: right bottom;">
+                                style="background-image: url({{pros.Pimage1.url}}); background-size: 180px 130px; background-position: right bottom;">
                                 <div class="content">
                                     <h2>
-                                        {{pro.3.Pname}}
+                                        {{pros.Pname}}
                                     </h2>
-                                    <h3>$259.99</h3>
+                                    <h3>₹{{pros.Price}}</h3>
                                 </div>
                             </div>
+                            
                             <!-- End Small Banner -->
                         </div>
                         <div class="col-lg-12 col-md-6 col-12">
@@ -382,16 +387,16 @@
                             <h4 class="title">
                                 <a href="product-grids.html">{{i.Pname}}</a>
                             </h4>
-                            <ul class="review">
+                            {% comment %} <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star"></i></li>
                                 <li><span>4.0 Review(s)</span></li>
-                            </ul>
+                            </ul> {% endcomment %}
                             <div class="price">
-                                <span>${{i.Price}}</span>
+                                <span>₹{{i.Price}}</span>
                             </div>
                         </div>
                     </div>
@@ -736,6 +741,65 @@
     border-color: rgb(238, 238, 238);
     border-image: initial;
     background-position: right 17px center;
+}
+
+.cart-list-title {
+    background-color: #fff;
+    padding: 18px 20px;
+    border-bottom: 1px solid #eee;
+}
+.cart-single-list:last-child {
+    border: none !important;
+    border-radius: 0 0 4px 4px;
+}
+.cart-single-list {
+    padding: 30px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+.shopping-cart {
+    background-color: #f9f9f9;
+}
+.cart-single-list .product-name a {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+.shopping-cart .total-amount .right {
+    padding: 40px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 40px;
+}
+.shopping-cart .total-amount .right ul li span {
+    display: inline-block;
+    float: right;
+}
+.shopping-cart .total-amount .right ul li {
+    font-size: 14px;
+    font-weight: 500;
+    color: #081828;
+    margin-bottom: 12px;
+}
+.shopping-cart .total-amount .coupon {
+    padding: 40px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 40px;
+    display: inline-block;
+    width: -webkit-fill-available;
+}
+.shopping-cart .total-amount .coupon input textarea {
+    width: 300px;
+    height: 46px;
+    border: 1px solid #dddddd;
+    overflow: hidden;
+    border-radius: 4px;
+    color: #333;
+    padding: 0px 20px;
+    display: inline-block;
 }
 
     </style>

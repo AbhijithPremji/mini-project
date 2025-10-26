@@ -1,0 +1,100 @@
+{% extends "home.html" %}
+{% block contents %}
+{% load static %}
+                            <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href="/store/home"  aria-label="Toggle navigation">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{% url 'about' %}">About Us</a>
+                                        
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="active" href="{% url 'grid' %}">Products</a>
+                                    </li>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Services</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                            <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+                                            </li>
+                                            <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
+                                            <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
+                                                    Sibebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{% url 'contactuser' %}" aria-label="Toggle navigation">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Nav Social -->
+                    <div class="nav-social">
+                        <h5 class="title">Follow Us:</h5>
+                        <ul>
+                            <li>
+                                <a href=""><i class="lni lni-facebook-filled"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-twitter-original"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="lni lni-skype"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Nav Social -->
+                </div>
+            </div>
+        </div>
+ </header>
+                 {% for i in data %}
+                <div class="cart-single-list">
+                    <div class="row align-items-center">
+                        <div class="col-lg-1 col-md-1 col-8">
+                            {% comment %} <a href="product-details.html"><img src="assets/images/cart/01.jpg" alt="#"></a> {% endcomment %}
+                        </div>
+                        <div class="col-lg-4 col-md-2 col-10">
+                            <h5 class="product-name"><a href="product-details.html">
+                                    {{i.Product}}</a></h5>
+                            {% comment %} <p class="product-des">
+                                <span><em>Type:</em> Mirrorless</span>
+                                <span><em>Color:</em> Black</span>
+                            </p> {% endcomment %}
+                        </div>
+                        
+                        <div class="col-lg-2 col-md-2 col-12">
+                            <p>{{i.Qty}}</p>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-12">
+                            <p>( {{i.Qty}} x {{i.Price}} ) =  ₹{{i.Total}}</p>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-12">
+                            <a class="remove-item" href="{% url 'cartdel' pid=i.id %}"><i class="lni lni-close"></i></a>
+                        </div>
+                        {% comment %} <div class="col-lg-1 col-md-2 col-12">
+                            <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+                 {% endfor %}
+{% endblock %}

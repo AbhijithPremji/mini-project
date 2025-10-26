@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+  
+<!-- Login 13 - Bootstrap Brain Component -->
+<section class="bg-light py-3 py-md-5">
+  <div class="container">
+    <form method="POST" action="{% url 'saveuser' %}"  enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+        <div class="card border border-light-subtle rounded-3 shadow-sm">
+          <div class="card-body p-5 p-md-5 p-xl-5">
+            <div class="text-center mb-3">
+              <a href="#!">
+                <img src="./assets/img/bsb-logo.svg" alt="BootstrapBrain Logo" width="175" height="57">
+              </a>
+            </div>
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Register your account</h2>
+            <form action="#!">
+              <div class="row gy-2 overflow-hidden">
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="username" id="name" placeholder="name" required>
+                    <label for="text" class="form-label">Name</label>
+                  </div>
+                   <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                    <label for="email" class="form-label">Email</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="password1" id="password1" value="" placeholder="Password" required>
+                    <label for="password" class="form-label">Password</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" name="password2" id="password2" value="" placeholder="confirm Password" required>
+                    <label for="password" class="form-label">Confirm Password</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                <div id="passwordError" style="color: red; margin-bottom: 15px;"></div>
+                </div>
+                <div class="col-12">
+                  <div class="d-flex gap-2 justify-content-between">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" name="rememberMe" id="rememberMe">
+                      <label class="form-check-label text-secondary" for="rememberMe">
+                        Keep me logged in
+                      </label>
+                    </div>
+                    <a href="#!" class="link-primary text-decoration-none">Forgot password?</a>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-grid my-3">
+                    <button class="btn btn-primary btn-lg" type="submit">Register</button>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <p class="m-0 text-secondary text-center"> <a href="{% url 'userlogin' %}" class="link-primary text-decoration-none">Login</a></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</section>
+    </body>
+   <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // Get the elements
+        const pass1 = document.getElementById("password1");
+        const pass2 = document.getElementById("password2");
+        const errorDiv = document.getElementById("passwordError");
+        
+        // Get the form. Assumes its ID is 'yourForm'.
+        // Change 'yourForm' to your form's actual ID.
+        const form = document.getElementById("yourForm"); 
+
+        // Function to check passwords
+        function checkPasswords() {
+            if (pass1.value === pass2.value) {
+                // Passwords match
+                errorDiv.textContent = ""; // Clear the error
+                pass2.setCustomValidity(""); // Clear the browser's native error
+                return true;
+            } else {
+                // Passwords do not match
+                const errorMsg = "Passwords are not match.";
+                errorDiv.textContent = errorMsg;
+                
+                // Use browser's built-in validation message
+                pass2.setCustomValidity(errorMsg); 
+                return false;
+            }
+        }
+
+        // --- Event Listeners ---
+
+        // 1. Check in real-time as user types
+        pass1.addEventListener("keyup", checkPasswords);
+        pass2.addEventListener("keyup", checkPasswords);
+
+        // 2. Final check when form is submitted
+        if(form) { // Only run if the form exists
+            form.addEventListener("submit", function(event) {
+                if (!checkPasswords()) {
+                    // Stop the form from submitting
+                    event.preventDefault(); 
+                    
+                    // Force the browser's validation UI to show
+                    pass2.reportValidity();
+                }
+            });
+        }
+
+    });
+</script>
+</html>
